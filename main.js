@@ -2,6 +2,7 @@
  	   app	   = express(),
  	   server  = require('http').Server(app),
  	   io	   = require('socket.io')(server),
+ 	   xss	   = require("xss"),
  	   port    = process.env.PORT || 3000 ;
 
 var 	n = 0,
@@ -26,10 +27,10 @@ io.on('connection',function(socket){
 	
 	socket.on('username', function(username){
 		n++
-		socket.username = username
+		socket.username = xss(username)
 		users.push(socket.username);
 		socket.broadcast.emit('new user',socket.username)
-		
+
 		io.emit("send users",{
 			name: users,
 			conect: n
@@ -39,7 +40,8 @@ io.on('connection',function(socket){
 
 	socket.on('send message',function(msg) {
 		msg = socket.username + ': ' + msg
-		io.emit('show message',{msg: msg})
+
+		io.emit('show message',{msg: xss(msg)})
 	})
 
 	socket.on('disconnect',function(){
