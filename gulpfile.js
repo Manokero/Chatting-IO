@@ -19,13 +19,13 @@ gulp.task('minify-css', function(){
 
 gulp.task('minify-js', function() {
   gulp.src('asserts/js/*.js')
-    .pipe(minify({
-        ext:{
-            src:'-wildin.js',
-            min:'.js'
-        }
-    }))
+    .pipe(minify())
     .pipe(gulp.dest('public'))
 });
 
-gulp.task('default',['minify','minify-css','minify-js']);
+gulp.task('move',function(){
+	gulp.src('node_modules/jquery/dist/jquery.min.js')
+	.pipe(gulp.dest('public'))
+})
+
+gulp.task('default',['minify','minify-css','minify-js','move']);

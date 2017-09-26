@@ -26,16 +26,15 @@ $(function(){
 		$('.online').text(p_online)
 		$('.bienvenido').text("Bienvenido "+ nameInput.val())
 	})
-
+	var hora
 	function hora_actual(){
-	var d,n;
-	d = new Date()
-	n = d.toLocaleTimeString()
-	return n;
+		var d;
+		d = new Date()
+		hora = d.toLocaleTimeString()
+		
 	}
 	
 	setInterval(hora_actual,1000)
-	hora = hora_actual()
 	socket.on('new user',function(usuario){
 		if (typeof(usuario)!= 'null') {
 			$('.mensajes').append('<center><p>Se ha conectado '

@@ -1,1 +1,86 @@
-function busca(e){var n=document.getElementsByClassName("conectados_lista");if(0!=e)for(t=n.length-1;t>=0;t--)e==n[t].innerHTML.substring(0,e.length)?n[t].style.display="block":n[t].style.display="none";else for(var t=n.length-1;t>=0;t--)n[t].style.display="block"}var socket=io();$(function(){function e(){var e;return e=new Date,e.toLocaleTimeString()}var n=$("#nameInput");n.focus(),$("#chat").hide(),$("#formUser").submit(function(){return $("#index").hide(),$("#chat").show(),socket.emit("username",n.val()),$("#inputMensaje").focus(),!1}),socket.on("send users",function(e){$("#lista_conectados").text(" ");for(var t=e.name.length-1;t>=0;t--)$("#lista_conectados").append("<li class='conectados_lista'>"+e.name[t]+"</li>");var s="Online ("+e.conect+")";$(".online").text(s),$(".bienvenido").text("Bienvenido "+n.val())}),setInterval(e,1e3),hora=e(),socket.on("new user",function(e){"null"!=typeof e&&$(".mensajes").append("<center><p>Se ha conectado "+e+"</p></center>")}),$("#formMensaje").submit(function(){return socket.emit("send message",$("#inputMensaje").val()),$("#inputMensaje").val(""),!1}),socket.on("show message",function(e){void 0!==e.msg&&$(".mensajes").append("<li>"+e.msg+"<p>"+hora+"</p></li>"),void 0!==e.user&&$(".mensajes").append("<center><p>"+e.user+" ha abandonado el chat</p></center>")})});
+
+var socket = io()
+$(function(){
+
+	var nameInput = $('#nameInput')
+
+
+	nameInput.focus();
+	$("#chat").hide()
+	$('#formUser').submit(function(){
+		$('#index').hide()
+		$('#chat').show()
+		socket.emit('username',nameInput.val())
+		$('#inputMensaje').focus()
+		return false;
+	})
+
+	socket.on('send users',function(info){
+		$("#lista_conectados").text(' ')
+		for (var i = info['name'].length - 1; i >= 0; i--) {
+			$('#lista_conectados').append("<li class='conectados_lista'>"
+				+info.name[i]+
+				"</li>")
+		}
+		var p_online = 'Online ('+info.conect+')'
+		$('.online').text(p_online)
+		$('.bienvenido').text("Bienvenido "+ nameInput.val())
+	})
+	var hora
+	function hora_actual(){
+		var d;
+		d = new Date()
+		hora = d.toLocaleTimeString()
+		
+	}
+	
+	setInterval(hora_actual,1000)
+	socket.on('new user',function(usuario){
+		if (typeof(usuario)!= 'null') {
+			$('.mensajes').append('<center><p>Se ha conectado '
+				+usuario+
+				'</p></center>')
+		}
+	})
+	
+
+	$('#formMensaje').submit(function(){
+		socket.emit('send message',$('#inputMensaje').val())
+		$('#inputMensaje').val("")
+		return false;
+	})
+
+	socket.on('show message', function(msg){
+		if (typeof(msg.msg)!= 'undefined' )
+			$('.mensajes').append('<li>'+msg.msg+ '<p>'+hora+'</p>'
+			 +'</li>') 
+		if (typeof(msg.user)!= 'undefined') {
+			$('.mensajes').append('<center><p>'
+				+msg.user+
+				' ha abandonado el chat</p></center>')
+		}
+
+	})
+
+
+})
+
+
+
+function busca(v){
+	var usuarios = [];
+	var msg = document.getElementsByClassName('conectados_lista');
+	if (v!=0) {
+		for (var i = msg.length - 1; i >= 0; i--) {
+			if (v==msg[i].innerHTML.substring(0,v.length)) {
+				msg[i].style.display = 'block'
+			} else {
+				msg[i].style.display = 'none'
+			}
+		}
+	} else{
+		for (var i = msg.length - 1; i >= 0; i--) {
+			msg[i].style.display = 'block'
+		}
+	}
+}

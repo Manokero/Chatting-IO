@@ -29,6 +29,7 @@ io.on('connection',function(socket){
 		socket.username = username
 		users.push(socket.username);
 		socket.broadcast.emit('new user',socket.username)
+		
 		io.emit("send users",{
 			name: users,
 			conect: n
@@ -53,3 +54,4 @@ io.on('connection',function(socket){
 
 
 server.listen(port)
+console.log(`Server running at ${port}`)
