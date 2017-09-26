@@ -6,26 +6,26 @@ var minify = require('gulp-minify');
 
 
 gulp.task('minify', function() {
-  return gulp.src('src/*.html')
+  return gulp.src('asserts/views/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('public'));
 });
 
 gulp.task('minify-css', function(){
-  return gulp.src('styles/*.css')
+  return gulp.src('asserts/styles/*.css')
     .pipe(cleanCSS({compatibility: 'ie8'}))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('public'));
 });
 
-gulp.task('compress', function() {
-  gulp.src('lib/*.js')
+gulp.task('minify-js', function() {
+  gulp.src('asserts/js/*.js')
     .pipe(minify({
         ext:{
-            src:'-debug.js',
+            src:'-wildin.js',
             min:'.js'
-        },
-        exclude: ['tasks'],
-        ignoreFiles: ['.combo.js', '-min.js']
+        }
     }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('public'))
 });
+
+gulp.task('default',['minify','minify-css','minify-js']);

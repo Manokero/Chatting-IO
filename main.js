@@ -9,17 +9,17 @@ var 	n = 0,
 	hora  = '';
 
 
-app.use("/files",express.static('files'))
+app.use("/files",express.static('public'))
 
 
 
 app.get('/',function(req,res) {
-	res.sendFile(__dirname+'/files/index.html')
+	res.sendFile(__dirname+'/public/index.html')
 })
 
 
 app.use(function (req,res,next){
-	res.status(404).sendFile(__dirname+"/files/404.html")
+	res.status(404).sendFile(__dirname+"/public/404.html")
 })
 
 io.on('connection',function(socket){
