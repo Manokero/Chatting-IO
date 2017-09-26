@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node main.js"
-  },  
+  },
   "engines": {
     "node": "7.3.0"
   },
@@ -15,5 +15,11 @@
   "dependencies": {
     "express": "4.*",
     "socket.io": "1.*"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-minify": "^1.0.0"
   }
 }
