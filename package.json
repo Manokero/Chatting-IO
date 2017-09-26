@@ -7,6 +7,10 @@
     "build": "gulp",
     "start": "gulp & node main.js"
   },
+  "repository":{
+    "type":"git",
+    "url": "https://github.com/Manokero/Chatting-IO.git"
+  },
   "engines": {
     "node": "7.3.0"
   },
