@@ -22,6 +22,7 @@ $(function(){
 				+info.name[i]+
 				"</li>")
 		}
+		
 		var p_online = 'Online ('+info.conect+')'
 		$('.online').text(p_online)
 		$('.bienvenido').text("Bienvenido "+ nameInput.val())
