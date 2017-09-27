@@ -27,5 +27,5 @@ gulp.task('move',function(){
 	gulp.src('node_modules/jquery/dist/jquery.min.js')
 	.pipe(gulp.dest('public'))
 })
-
+ 
 gulp.task('default',['minify','minify-css','minify-js','move']);
