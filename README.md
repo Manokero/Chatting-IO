@@ -2,7 +2,7 @@
 
 This is a little experiment in socket.io
 
-##Steps to make it work
+**Steps to make it work**
 
  1. [Download Nodejs](https://nodejs.org/es/download/) on your PC and install it.
 
