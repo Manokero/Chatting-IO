@@ -8,31 +8,31 @@ This is a little experiment in socket.io
 
  2. Install Gulp:
 ```	
-npm install gulp-cli -g 
-npm install gulp-D
+$ npm install gulp-cli -g 
+$ npm install gulp-D
 ```
 
  3. Run `npm install` to get all the dependencies needed.
 
  4. Build the project:
 ```	
-mkdir public
-npm run-script build
+$ mkdir public
+$ npm run-script build
 ```
 
  5. Build and run:
 
 **Windows:**
 ```
-mkdir public
-gulp
-node server.js
+>mkdir public
+>gulp
+>node main.js
 ```
 
 **Linux:**
 ```
-mkdir public
-npm start"
+$ mkdir public
+$ npm start
 ```
 
 
