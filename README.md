@@ -15,8 +15,15 @@ Steps to make it work
 	"mkdir public" 
 	"npm run-script build"
 
- 5. Build and run: 
-	"mkdir public"
-	"npm start"
+ 5. Build and run:
+
+Windows:
+Add public folder
+"gulp"
+"node server.js"
+
+Linux:
+"mkdir public"
+"npm start"
 
 
