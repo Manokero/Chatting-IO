@@ -3,13 +3,14 @@
  	   server  = require('http').Server(app),
  	   io	   = require('socket.io')(server),
  	   xss	   = require("xss"),
+ 	   helmet  = require('helmet')
  	   port    = process.env.PORT || 3000 ;
 
 var 	n = 0,
 	users = [],
 	hora  = '';
 
-
+app.use(helmet())
 app.use("/files",express.static('public'))
 
 
