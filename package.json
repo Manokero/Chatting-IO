@@ -1,7 +1,7 @@
 {
   "name": "chat",
   "version": "2.0.1",
-  "description": "Un chat global entre todo el que entre",
+  "description": "Sample chat in nodeJs",
   "main": "main.js",
   "scripts": {
     "build": "gulp",
